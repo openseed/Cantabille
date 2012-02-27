@@ -2,16 +2,23 @@ apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'idea'
+apply plugin: 'maven'
 
 sourceCompatibility = 1.6
 
 repositories {
+    mavenLocal()
     mavenCentral()
+    maven {
+        url 'http://repo.springsource.org/lib-snapshot'
+    }
 }
 
-springVersion = '3.1.1.RELEASE';
+springVersion = '3.1.1.RELEASE'
+springDataVersion = '1.0.1.RELEASE'
 
 dependencies {
+    compile 'org.springframework.data:spring-data-mongodb:'+springDataVersion
     compile 'org.springframework:spring-core:'+springVersion
     compile 'org.springframework:spring-context:'+springVersion
     compile 'org.springframework:spring-webmvc:'+springVersion
@@ -20,4 +27,8 @@ dependencies {
     compile 'org.springframework:spring-aop:'+springVersion
     compile 'org.springframework:spring-jdbc:'+springVersion
     testCompile 'junit:junit:4.10'
+}
+
+task writeNewPom  << {
+    pom{}.writeTo("$projectDir/pom.xml")
 }
