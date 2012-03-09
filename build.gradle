@@ -4,6 +4,9 @@ apply plugin: 'eclipse-wtp'
 apply plugin: 'idea'
 apply plugin: 'maven'
 
+description = 'The Java based Blog engine.'
+abbreviation = 'Cantabille'
+
 sourceCompatibility = 1.6
 
 repositories {
@@ -18,14 +21,15 @@ springVersion = '3.1.1.RELEASE'
 springDataVersion = '1.0.1.RELEASE'
 
 dependencies {
-    compile 'org.springframework.data:spring-data-mongodb:'+springDataVersion
-    compile 'org.springframework:spring-core:'+springVersion
-    compile 'org.springframework:spring-context:'+springVersion
-    compile 'org.springframework:spring-webmvc:'+springVersion
-    compile 'org.springframework:spring-tx:'+springVersion
-    compile 'org.springframework:spring-orm:'+springVersion
-    compile 'org.springframework:spring-aop:'+springVersion
-    compile 'org.springframework:spring-jdbc:'+springVersion
+    compile 'org.projectlombok:lombok:0.10.8'
+    compile 'org.springframework.data:spring-data-mongodb:$springDataVersion'
+    compile 'org.springframework:spring-core:$springVersion'
+    compile 'org.springframework:spring-context:$springVersion'
+    compile 'org.springframework:spring-webmvc:$springVersion'
+    compile 'org.springframework:spring-tx:$springVersion'
+    compile 'org.springframework:spring-orm:$springVersion'
+    compile 'org.springframework:spring-aop:$springVersion'
+    compile 'org.springframework:spring-jdbc:$springVersion'
     testCompile 'junit:junit:4.10'
 }
 

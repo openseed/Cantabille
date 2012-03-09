@@ -1,5 +1,6 @@
 package cantabille.domain;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,40 +11,38 @@ import java.util.Date;
  * @author Keesun Baik
  */
 @Document
+@Data
 public class Posts {
 
 	@Id
-	String id;
+	private String id;
 
 	@DBRef
-	Users author;
+	private Users author;
 
-	@DBRef
-	Posts parent;
+	private Date date;
 
-	Date date;
+	private Date dateOfGmt;
 
-	Date dateOfGmt;
+	private Date modified;
 
-	Date modified;
+	private Date modifiedOfGmt;
 
-	Date modifiedOfGmt;
+	private String content;
 
-	String content;
+	private String title;
 
-	String title;
+	private PostStatus status;
 
-	PostStatus status;
+	private boolean isCommentAvailable;
 
-	boolean isCommentAvailable;
+	private boolean isPingAvailable;
 
-	boolean isPingAvailable;
-	
-	String guid;
+	private String guid;
 
-	PostType postType;
+	private PostType postType;
 
-	int commentCount;
+	private int commentCount;
 
 
 }
