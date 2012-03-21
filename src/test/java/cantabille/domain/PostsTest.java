@@ -16,6 +16,5 @@ public class PostsTest {
 		String content = "Hello Cantabille";
 		firstPost.setContent(content);
 		assertThat(firstPost.getContent(), is(content));
-
 	}
 }
