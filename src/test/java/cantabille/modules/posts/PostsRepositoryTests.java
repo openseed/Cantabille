@@ -1,47 +1,45 @@
 package cantabille.modules.posts;
 
-import cantabille.config.AppConfig;
+import cantabille.commons.test.RepositoryTests;
 import cantabille.domain.Posts;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 /**
  * @author Keesun Baik
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = AppConfig.class)
-public class PostsRepositoryTests {
-
-	@Autowired PostsRepository postsRepository;
-
-	@Before
-	public void init(){
-		postsRepository.deleteAll();
-	}
+public class PostsRepositoryTests extends RepositoryTests<PostsRepository>{
 
 	@Test
 	public void crud(){
 		Posts firstPost = new Posts();
 		firstPost.setTitle("Hello Toby");
 		firstPost.setContent("Hello Cantabille");
-		
-		postsRepository.save(firstPost);
-		assertThat(postsRepository.count(), is(1l));
-	}
 
-	@After
-	public void destroy(){
-		postsRepository.deleteAll();
+		// ADD
+		repository.save(firstPost);
+		assertThat(repository.count(), is(1l));
+
+		// UPDATE
+		firstPost.setTitle("Hello Keesun");
+		repository.save(firstPost);
+		assertThat(repository.count(), is(1l));
+
+		// GET
+		Posts savedPost = repository.findOne(firstPost.getId());
+		assertThat(savedPost.getTitle(), is("Hello Keesun"));
+
+		// GET ALL
+		List<Posts> posts = repository.findAll();
+		assertThat(posts.size(), is(1));
+
+		// DELETE
+		repository.delete(firstPost);
+		assertThat(repository.count(), is(0l));
 	}
 
 }

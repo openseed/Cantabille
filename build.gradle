@@ -31,8 +31,8 @@ dependencies {
     compile "org.springframework:spring-aop:$springVersion"
     compile "org.springframework:spring-jdbc:$springVersion"
     compile "cglib:cglib-nodep:2.2.2"
-    testCompile "org.springframework:spring-test:$springVersion"
-    testCompile "junit:junit:4.10"
+    compile "org.springframework:spring-test:$springVersion"
+    compile "junit:junit:4.10"
 }
 
 task writeNewPom  << {
