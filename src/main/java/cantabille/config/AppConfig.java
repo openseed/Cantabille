@@ -18,8 +18,8 @@ import org.springframework.stereotype.Controller;
 @ComponentScan(
 		basePackageClasses = ModulesPackageMarker.class,
 		excludeFilters = @ComponentScan.Filter(Controller.class))
-@ImportResource("/context.xml")
-@PropertySource("/env.properties")
+@ImportResource("classpath:/context.xml")
+@PropertySource("classpath:/env.properties")
 public class AppConfig {
 
 	@Autowired Environment env;
