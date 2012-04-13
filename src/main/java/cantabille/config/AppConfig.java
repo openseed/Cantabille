@@ -1,5 +1,6 @@
 package cantabille.config;
 
+import cantabille.modules.ModulesPackageMarker;
 import com.mongodb.Mongo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
@@ -15,8 +16,8 @@ import org.springframework.stereotype.Controller;
  */
 @Configuration
 @ComponentScan(
-		basePackages = "cantabille",
-		excludeFilters = {@ComponentScan.Filter(Configuration.class), @ComponentScan.Filter(Controller.class)})
+		basePackageClasses = ModulesPackageMarker.class,
+		excludeFilters = @ComponentScan.Filter(Controller.class))
 @ImportResource("/context.xml")
 @PropertySource("/env.properties")
 public class AppConfig {

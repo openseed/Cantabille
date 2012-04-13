@@ -10,6 +10,10 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 /**
+ *
+ * Please check out that the mongod is running, before run this tests.
+ * The mongod running script is in /docs/scripts/run_mongodb.sh
+ *
  * @author Keesun Baik
  */
 public class PostsRepositoryTests extends RepositoryTests<PostsRepository>{

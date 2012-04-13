@@ -5,6 +5,10 @@ import cantabille.domain.Users;
 import org.junit.Test;
 
 /**
+ *
+ * Please check out that the mongod is running, before run this tests.
+ * The mongod running script is in /docs/scripts/run_mongodb.sh
+ *
  * @author Keesun Baik
  */
 public class UsersRepositoriesTests extends RepositoryTests<UsersRepository> {
