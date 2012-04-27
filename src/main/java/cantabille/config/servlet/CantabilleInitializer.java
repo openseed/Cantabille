@@ -1,5 +1,7 @@
-package cantabille.config;
+package cantabille.config.servlet;
 
+import cantabille.config.AppConfig;
+import cantabille.config.WebConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;

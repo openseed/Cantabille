@@ -5,6 +5,6 @@
 	<title>Cantabille</title>
 </head>
 <body>
-	Hello Cantabille
+	Init Cantabille
 </body>
 </html>

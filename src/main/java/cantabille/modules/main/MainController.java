@@ -1,5 +1,8 @@
 package cantabille.modules.main;
 
+import cantabille.domain.Settings;
+import cantabille.modules.settings.SettingsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,10 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class MainController {
+
+	@Autowired SettingsService settingsService;
 	
 	@RequestMapping("/home")
 	public String home(Model model){
-		model.addAttribute("name", "Keesun");
-		return "home";
+		Settings settings = settingsService.getTheSettings();
+		if(settings == null) {
+			model.addAttribute("settings", new Settings());
+			return "/init";
+		} else {
+			model.addAttribute("settings", settings);
+			return "home";
+		}
 	}
 }
