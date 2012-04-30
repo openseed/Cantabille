@@ -12,6 +12,10 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.thymeleaf.spring3.SpringTemplateEngine;
+import org.thymeleaf.spring3.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 /**
  * @author Keesun Baik
@@ -33,13 +37,42 @@ public class WebConfig extends WebMvcConfigurationSupport {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/static");
 	}
 
+	// ****************************************************************
+	// ViewResolver for the JSP
+	// ****************************************************************
+//	@Bean
+//	public InternalResourceViewResolver viewResolver() {
+//		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+//		resolver.setViewClass(JstlView.class);
+//		resolver.setPrefix("/WEB-INF/views/");
+//		resolver.setSuffix(".jsp");
+//		return resolver;
+//	}
+
+	// ****************************************************************
+	// ViewResolver for the Thymeleaf
+	// ****************************************************************
 	@Bean
-	public InternalResourceViewResolver viewResolver() {
-		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setViewClass(JstlView.class);
-		resolver.setPrefix("/WEB-INF/views/");
-		resolver.setSuffix(".jsp");
-		return resolver;
+	public ThymeleafViewResolver viewResolver(){
+		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+		viewResolver.setTemplateEngine(thymeleafEngine());
+		return viewResolver;
+	}
+
+	@Bean
+	public SpringTemplateEngine thymeleafEngine() {
+		SpringTemplateEngine thymeleafEngine = new SpringTemplateEngine();
+		thymeleafEngine.setTemplateResolver(templateResolver());
+		return thymeleafEngine;
+	}
+
+	@Bean
+	public ServletContextTemplateResolver templateResolver() {
+		ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
+		templateResolver.setPrefix("/WEB-INF/views");
+		templateResolver.setSuffix(".html");
+		templateResolver.setTemplateMode("HTML5");
+		return templateResolver;
 	}
 
 }

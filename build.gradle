@@ -36,12 +36,11 @@ dependencies {
     compile "junit:junit:4.10"
     compile "org.springframework:spring-test-mvc:1.0.0.BUILD-SNAPSHOT"
     compile "javax.servlet:javax.servlet-api:3.0.1"
-    compile "cglib:cglib:2.2.2"
     runtime "javax.servlet:jstl:1.2"
     compile "ch.qos.logback:logback-classic:1.0.0"
     compile "org.slf4j:jcl-over-slf4j:1.6.4"
     compile "org.mockito:mockito-all:1.9.0"
-
+    compile "org.thymeleaf:thymeleaf-spring3:2.0.5"
 }
 
 task writeNewPom  << {
